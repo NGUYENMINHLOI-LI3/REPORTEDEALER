@@ -1,33 +1,24 @@
-# Reporte Dealer — Proyecto Vercel (sitio estático)
+# Dashboard Dealer Lima 3
 
-Trang web tra cứu kết quả bán hàng & hoa hồng kênh Dealer (Bitel Lima3).
+Proyecto limpio para Vercel + Supabase. La web pública muestra el último reporte publicado y `/admin` permite que un usuario autenticado cargue los Excel diarios.
 
-## Nội dung
-- `index.html` — Trang PUBLICADO (đã nhúng sẵn dữ liệu, mở ra là xem/tra cứu ngay — cho kênh). Đây là trang chính khi truy cập link.
-- `admin.html` — App quản trị (đăng nhập admin để import 4 file và bấm "Publicar"). Mật khẩu admin mặc định: `lima3admin` (đổi trong file, dòng `const ADMIN_PASSWORD`).
-- `vercel.json` — Cấu hình sitio estático (không cache để cập nhật hiện ngay).
+## Instalación
 
-## Cách deploy lên Vercel
+1. Crea un proyecto Supabase y ejecuta `supabase.sql` en **SQL Editor**.
+2. Crea cada usuario administrador en **Authentication > Users** con el correo técnico `USUARIO@bitel-lima3.invalid`, marca **Auto Confirm User** y asigna una contraseña. En la web solo escribirán `USUARIO` y su contraseña.
+3. Edita `supabase-config.js` y coloca el Project URL y la clave **anon public**. Nunca uses `service_role`.
+4. Crea un repositorio GitHub con esta carpeta y publícalo en Vercel.
 
-### Cách 1 — Vercel CLI (nhanh)
-1. Cài Node.js, rồi chạy: `npm i -g vercel`
-2. Mở terminal trong thư mục này, chạy: `vercel`  (lần đầu đăng nhập + tạo project)
-3. Deploy chính thức: `vercel --prod`  → nhận link dạng `https://ten-project.vercel.app`
-4. Cập nhật hằng ngày: thay `index.html` mới (từ nút "Publicar" trong admin.html), chạy lại `vercel --prod`.
+## Operación diaria
 
-### Cách 2 — GitHub + Vercel (link cố định, tự động)
-1. Tạo repo GitHub, upload cả thư mục này.
-2. Vào https://vercel.com → "Add New… → Project" → Import repo → Deploy (framework: Other).
-3. Link cố định: `https://ten-project.vercel.app`.
-4. Cập nhật: thay `index.html` trong repo → Vercel tự deploy lại.
+1. Abre `/admin` e inicia sesión.
+2. Sube los archivos `.xlsx` o `.xls` de QLIK, POST N, Register y Referidos.
+3. Revisa la vista previa y pulsa **Guardar y publicar**.
 
-## Đường dẫn
-- `/` hoặc `/index.html` → Trang tra cứu (kênh dùng).
-- `/admin` hoặc `/admin.html` → App quản trị (chỉ admin).
+Los Excel originales se guardan en el bucket privado `reportes-excel`. El navegador solo publica el resultado consolidado y la web pública siempre consulta la última versión.
 
-## Quy trình cập nhật số liệu hằng ngày
-1. Mở `admin.html` (local hoặc trên `/admin`) → đăng nhập admin.
-2. Import 4 file dữ liệu (QLIK, POST N, Register, Referidos).
-3. Bấm "📤 Publicar" → tải file HTML có dữ liệu.
-4. Đổi tên file đó thành `index.html`, thay vào project, deploy lại (Cách 1 hoặc 2).
-   - Nếu chưa cập nhật, link vẫn giữ dữ liệu cũ.
+Después de crear cada usuario, copia su UUID de Authentication y autorízalo:
+
+```sql
+insert into public.dashboard_admins (user_id) values ('UUID_DEL_USUARIO');
+```
