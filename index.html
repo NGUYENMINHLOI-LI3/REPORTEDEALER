@@ -97,7 +97,7 @@
     <div class="logo">B</div>
     <div style="min-width:280px">
       <h1 id="mainTitle"><b>RESULTADOS DE VENTAS Y COMISIONES</b><span class="datepart">HASTA EL DÍA <span id="titleDate">14/07/2026</span></span></h1>
-      <div class="sub">Activaciones · Ponderación (política julio 2026) · Soporte Renta+Staff · Comisión · Bonos Bipay</div>
+      <div class="sub">Activaciones · Ponderación · Soporte Renta+Staff · Comisión · Bonos Bipay <span id="subPeriod" style="color:#0f2a5e;font-weight:700">· Datos: julio 2026</span></div>
       <div class="pill" id="datePill" style="margin-top:8px;display:inline-block">📅 <b>julio 2026</b> · hasta día 14</div>
     </div>
     <div class="spacer"></div>
@@ -109,7 +109,7 @@
         <button class="btn ghost" id="loginBtn" style="padding:6px 12px;font-size:12px">Cerrar sesión</button>
       </div>
       <div id="loginPanel" class="loginpanel hidden">
-        <input type="password" id="loginPass" placeholder="Contraseña admin" style="padding: 7px 10px; font-size: 12.5px;">
+        <input type="password" id="loginPass" placeholder="Contraseña admin" style="padding:7px 10px;font-size:12.5px">
         <button class="btn" id="loginGo" style="padding:7px 12px;font-size:12px">Entrar</button>
         <div id="loginMsg" style="font-size:11px;color:var(--danger);margin-top:4px"></div>
       </div>
@@ -130,7 +130,7 @@
       <h3>Arrastra aquí los 4 archivos de datos diarios (o haz clic)</h3>
       <p>Detecta automáticamente por sus encabezados. Acepta .xlsx y .xls.</p>
       <p style="margin-top:6px"><b>Activaciones/Cash-in</b> (QLIK) · <b>Postpago detalle</b> (POST N) · <b>Register+Consumo</b> · <b>Referidos</b></p>
-      <input type="file" id="file" multiple="" accept=".xlsx,.xls,.xlsm,.csv" class="hidden" style="">
+      <input type="file" id="file" multiple="" accept=".xlsx,.xls,.xlsm,.csv" class="hidden">
       <div style="margin-top:14px"><button class="btn" id="pick">Seleccionar archivos</button></div>
       <div class="files" id="fileList"><div class="fchip"><span class="dot ok"></span>4af629e8-1784135833759_15_07_2026_12_11_34_developeSubReport_new.xls <span style="color:var(--muted)">· POSTN</span></div><div class="fchip"><span class="dot ok"></span>ec2126be-1784135833760_31e3b68b01564987b98a68b3338927ec.xlsx <span style="color:var(--muted)">· QLIK</span></div><div class="fchip"><span class="dot ok"></span>5d7974b8-1784135833761_e8dbe1b5718842a49d1680dfb2a8360d.xlsx <span style="color:var(--muted)">· REF</span></div><div class="fchip"><span class="dot ok"></span>b7df9667-1784135833761_eb0b959d24f44a3db7adbd97379dfb3a.xlsx <span style="color:var(--muted)">· REG</span></div></div>
     </div>
@@ -138,8 +138,8 @@
     <div class="opts">
       <span style="color:#cfe0ff;font-weight:600">Opciones de cálculo:</span>
       <label>Mes: <select id="optMonth" style="padding:4px 8px"><option value="all">Todos</option><option value="5">mayo</option><option value="6">junio</option><option value="7">julio</option></select></label>
-      <label><input type="checkbox" id="optRegister" style=""> Contar solo postpago CON Register (requiere archivo Register completo)</label>
-      <label><input type="checkbox" id="optSunHol" checked="" style=""> Aplicar factor domingo (1.5) y feriado (2.0)</label>
+      <label><input type="checkbox" id="optRegister"> Contar solo postpago CON Register (requiere archivo Register completo)</label>
+      <label><input type="checkbox" id="optSunHol" checked=""> Aplicar factor domingo (1.5) y feriado (2.0)</label>
       <label>Zona Bipay: <select id="optZona" style="padding:4px 8px"><option value="1">Urbana (S/1.00)</option><option value="1.5">Rural (S/1.50)</option></select></label>
     </div>
     <div id="parseMsg" style="margin-top:12px;color:var(--muted);font-size:12.5px"><b style="color:var(--green)">✔ Cálculo completado.</b> 38 dealers · 911 postpago · 683 prepago.</div>
@@ -166,7 +166,7 @@
     <section class="card pad" style="margin-bottom:16px">
       <div class="sec-title">🔍 Búsqueda por código de dealer</div>
       <div class="searchbox">
-        <input type="text" id="q" placeholder="Código (ej. LI3DA35) o nombre…" autocomplete="off" list="codes" style="">
+        <input type="text" id="q" placeholder="Código (ej. LI3DA35) o nombre…" autocomplete="off" list="codes">
         <datalist id="codes"><option value="LI3CD31">AETECH NETWORKS S.A.C.</option><option value="LI3CD25">EMPRESA KUNAN TELCOM SOCIEDAD ANONIMA CERRADA</option><option value="LI3DA37">BITELITE MEM E.I.R.L.</option><option value="LI3DA38">MARY CARMEN BENAVENTE FELIPA</option><option value="LI3CD27">M&amp;S COMUNICACIONES  S.A.C.</option><option value="LI2CD15">RCG SERVICE SAC CAB MANCHAY</option><option value="LI3DA45">MARY CARMEN BENAVENTE FELIPA T1</option><option value="LI3DA39">A.J.J. SERVICE S.A.C..</option><option value="LI3CD03">M&amp;S COMUNICACIONES SAC.</option><option value="LI3DA18">ASOCIADOS JK SERVICE S.A.C...</option><option value="LI3DA02">MIRANDA CORDOVA RICARDO ALEXANDER</option><option value="LI3DL91">STARPHONE COMUNICACIONES E.I.R.L</option><option value="LI3DA36">TELECOMUNICACIONES PERU BL S.A.C.</option><option value="LI3DA29">LOS GATOS MOVILES S.A.C.</option><option value="LI3CD30">TRADELAND SOCIEDAD ANONIMA CERRADA</option><option value="LI3DA30">M&amp;S COMUNICACIONES S.A.C.</option><option value="LI3DA46">A.J.J. SERVICE S.A.C</option><option value="LI3DA41">ASOCIADOS JK SERVICE S.A.C. T1</option><option value="LI3DA24">RCG SERVICE S.A.C</option><option value="LI3DA43">TECONECTO CORPORATION SOCIEDAD ANONIMA CERRADA</option><option value="LI3DA31">ASOCIADOS JK SERVICE S.A.C.</option><option value="LI3DA28">ALHUAY VENEGAS SONIA</option><option value="LI3DA01">DP MOBILES E.I.R.L....</option><option value="LI3DA15">TELECOMUNICACIONES PERU BL S.A.C...</option><option value="LI3DA42">COSSIO POZZO MANUEL MARTIN</option><option value="LI3DA23">A.J.J. SERVICE S.A.C.</option><option value="LI3DA16">RCG SERVICE S.A.C......</option><option value="LI3DA22">GRUPO ROBOTRONICA E.I.R.L.</option><option value="LI3DA06">INVERSIONES TOOPIM E.I.R.L</option><option value="LI3DA25">ASOCIADOS JK SERVICE S.A.C.</option><option value="LI3DA03">CAMPOS UGARTE ANGEL JHONATAN</option><option value="LI3DA32">M&amp;S COMUNICACIONES S.A.C.</option><option value="LI2DA55">KARLA ANDREA MENDIVES LLONTOP</option><option value="LI3DA33">TRADELAND SOCIEDAD ANONIMA CERRADA</option><option value="LI3DA35">RCG SERVICE S.A.C</option><option value="LI3DA21">JULCARIMA CASIMIRO NORMA ISABEL</option><option value="LI3DA26">INVERCIONES GALI</option><option value="LI3DA40">GIANELLA SHIRLEY CARMEN CHACON</option></datalist>
         <button class="btn ghost" id="clearq">Limpiar</button>
       </div>
@@ -176,9 +176,9 @@
     <section class="card pad">
       <div class="sec-title">📋 Tabla consolidada por dealer</div>
       <div class="toolbar">
-        <input type="text" id="tq" placeholder="Filtrar…" style="min-width: 180px;">
+        <input type="text" id="tq" placeholder="Filtrar…" style="min-width:180px">
         <select id="fchan"><option value="">Todos los canales</option><option>CAB Dealer</option><option>Dealer Autorizado</option><option>Dealer Channel</option></select>
-        <label style="font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px"><input type="checkbox" id="hideZero" style=""> Ocultar sin actividad</label>
+        <label style="font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px"><input type="checkbox" id="hideZero"> Ocultar sin actividad</label>
         <div class="spacer" style="flex:1"></div>
         <button class="btn amber" id="publishBtn" title="Genera un HTML con los datos incrustados para compartir">📤 Publicar (HTML con datos)</button>
         <button class="btn green" id="exportBtn">⬇️ Exportar Excel</button>
@@ -188,7 +188,7 @@
       </table></div>
     </section>
 
-    <div class="notes" id="notes"><b>Supuestos y notas del cálculo</b> — política Dealer julio 2026:<br>
+    <div class="notes" id="notes"><b>Supuestos y notas del cálculo</b> — política Dealer (vigente desde julio 2026) · Datos: julio 2026:<br>
   • <b>Ponderación</b>: postpago ≥29.9 y &lt;39.9 = 0.5; ≥39.9 y &lt;49.9 = 0.9 (sin) / 1.2 (con cash-in ≥S/5 + consumo válido); ≥49.9 = 0.9 / 1.5. Domingo=1.5, feriado=2.0 (activado).<br>
   • <b>Cash-in ≥S/5</b> = <code>has_cash_in=1</code> ó <code>amount_add≥5</code>. <b>Consumo válido</b> = <code>amount_deduct_services&gt;0</code>. <b>Tarifa</b> tomada del <code>product_code</code> (renta nominal; la política usa renta efectiva tras descuentos, que no viene en los datos).<br>
   • <b>Register</b>: se cuentan todos los postpago ≥29.9 (filtro Register desactivado — el archivo Register cubre solo parte de las líneas). Archivo Register: 677 líneas con register.<br>
@@ -541,6 +541,7 @@ function compute(){
 
   detectDatePill(); render();
   $('#results').classList.remove('hidden');
+  const pi=$('#pubinfo'); if(pi) pi.classList.add('hidden'); // datos nuevos importados: ocultar banner de publicación anterior
   $('#parseMsg').innerHTML=`<b style="color:var(--green)">✔ Cálculo completado.</b> ${DEALERS.length} dealers · ${fmt(sum('postpaid'))} postpago · ${fmt(sum('prepaid'))} prepago.`;
 }
 
@@ -554,7 +555,9 @@ function detectDatePill(){
   if(META.maxDate instanceof Date){ const d=META.maxDate; ds=String(d.getUTCDate()).padStart(2,'0')+'/'+String(d.getUTCMonth()+1).padStart(2,'0')+'/'+d.getUTCFullYear(); }
   else if(META.diaMax&&m){ ds=String(META.diaMax).padStart(2,'0')+'/'+String(m).padStart(2,'0')+'/'+(META.anio||''); }
   $('#titleDate').textContent=ds;
+  const sp=$('#subPeriod'); if(sp) sp.textContent = (m||multi)?('· '+(multi?label:('Datos: '+label))):'';
 }
+function periodLabel(){ const m=Number(META.mes)||0; return (MESES[m]||'')+' '+(META.anio||''); }
 
 /* ===================== Render ===================== */
 function sum(k){return DEALERS.reduce((a,d)=>a+(d[k]||0),0);}
@@ -659,7 +662,7 @@ $('#q').addEventListener('change',e=>showDetail(e.target.value));
 $('#clearq').onclick=()=>{$('#q').value='';$('#detail').classList.remove('show');};
 
 function renderNotes(){
-  $('#notes').innerHTML=`<b>Supuestos y notas del cálculo</b> — política Dealer julio 2026:<br>
+  $('#notes').innerHTML=`<b>Supuestos y notas del cálculo</b> — política Dealer (vigente desde julio 2026) · Datos: ${periodLabel()}:<br>
   • <b>Ponderación</b>: postpago ≥29.9 y &lt;39.9 = 0.5; ≥39.9 y &lt;49.9 = 0.9 (sin) / 1.2 (con cash-in ≥S/5 + consumo válido); ≥49.9 = 0.9 / 1.5. Domingo=1.5, feriado=2.0 ${META.optSH?'(activado)':'(desactivado)'}.<br>
   • <b>Cash-in ≥S/5</b> = <code>has_cash_in=1</code> ó <code>amount_add≥5</code>. <b>Consumo válido</b> = <code>amount_deduct_services&gt;0</code>. <b>Tarifa</b> tomada del <code>product_code</code> (renta nominal; la política usa renta efectiva tras descuentos, que no viene en los datos).<br>
   • <b>Register</b>: ${META.optReg?'se cuenta SOLO postpago con Register':'se cuentan todos los postpago ≥29.9 (filtro Register desactivado — el archivo Register cubre solo parte de las líneas)'}. Archivo Register: ${fmt(META.regCount||0)} líneas con register.<br>
@@ -684,7 +687,7 @@ $('#exportBtn').onclick=()=>{
   ws['!freeze']={xSplit:0,ySplit:2};
   XLSX.utils.book_append_sheet(wb,ws,'Resumen Dealers');
   // Supuestos
-  const sup=[['SUPUESTOS Y NOTAS — Política Dealer julio 2026'],[''],
+  const sup=[['SUPUESTOS Y NOTAS — Política Dealer (vigente desde julio 2026) · Datos: '+periodLabel()],[''],
     ['Ponderación','29.9≤t<39.9 = 0.5 | 39.9≤t<49.9 = 0.9/1.2 | t≥49.9 = 0.9/1.5 | domingo=1.5 | feriado=2.0'],
     ['Cash-in ≥S/5','has_cash_in=1 ó amount_add≥5'],
     ['Consumo válido','amount_deduct_services>0'],

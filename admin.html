@@ -98,7 +98,7 @@
     <div class="logo">B</div>
     <div style="min-width:280px">
       <h1 id="mainTitle"><b>RESULTADOS DE VENTAS Y COMISIONES</b><span class="datepart">HASTA EL DÍA <span id="titleDate">—</span></span></h1>
-      <div class="sub">Activaciones · Ponderación (política julio 2026) · Soporte Renta+Staff · Comisión · Bonos Bipay</div>
+      <div class="sub">Activaciones · Ponderación · Soporte Renta+Staff · Comisión · Bonos Bipay <span id="subPeriod" style="color:#0f2a5e;font-weight:700"></span></div>
       <div class="pill" id="datePill" style="margin-top:8px;display:inline-block">Sin datos cargados</div>
     </div>
     <div class="spacer"></div>
@@ -533,6 +533,7 @@ function compute(){
 
   detectDatePill(); render();
   $('#results').classList.remove('hidden');
+  const pi=$('#pubinfo'); if(pi) pi.classList.add('hidden'); // datos nuevos importados: ocultar banner de publicación anterior
   $('#parseMsg').innerHTML=`<b style="color:var(--green)">✔ Cálculo completado.</b> ${DEALERS.length} dealers · ${fmt(sum('postpaid'))} postpago · ${fmt(sum('prepaid'))} prepago.`;
 }
 
@@ -546,7 +547,9 @@ function detectDatePill(){
   if(META.maxDate instanceof Date){ const d=META.maxDate; ds=String(d.getUTCDate()).padStart(2,'0')+'/'+String(d.getUTCMonth()+1).padStart(2,'0')+'/'+d.getUTCFullYear(); }
   else if(META.diaMax&&m){ ds=String(META.diaMax).padStart(2,'0')+'/'+String(m).padStart(2,'0')+'/'+(META.anio||''); }
   $('#titleDate').textContent=ds;
+  const sp=$('#subPeriod'); if(sp) sp.textContent = (m||multi)?('· '+(multi?label:('Datos: '+label))):'';
 }
+function periodLabel(){ const m=Number(META.mes)||0; return (MESES[m]||'')+' '+(META.anio||''); }
 
 /* ===================== Render ===================== */
 function sum(k){return DEALERS.reduce((a,d)=>a+(d[k]||0),0);}
@@ -651,7 +654,7 @@ $('#q').addEventListener('change',e=>showDetail(e.target.value));
 $('#clearq').onclick=()=>{$('#q').value='';$('#detail').classList.remove('show');};
 
 function renderNotes(){
-  $('#notes').innerHTML=`<b>Supuestos y notas del cálculo</b> — política Dealer julio 2026:<br>
+  $('#notes').innerHTML=`<b>Supuestos y notas del cálculo</b> — política Dealer (vigente desde julio 2026) · Datos: ${periodLabel()}:<br>
   • <b>Ponderación</b>: postpago ≥29.9 y &lt;39.9 = 0.5; ≥39.9 y &lt;49.9 = 0.9 (sin) / 1.2 (con cash-in ≥S/5 + consumo válido); ≥49.9 = 0.9 / 1.5. Domingo=1.5, feriado=2.0 ${META.optSH?'(activado)':'(desactivado)'}.<br>
   • <b>Cash-in ≥S/5</b> = <code>has_cash_in=1</code> ó <code>amount_add≥5</code>. <b>Consumo válido</b> = <code>amount_deduct_services&gt;0</code>. <b>Tarifa</b> tomada del <code>product_code</code> (renta nominal; la política usa renta efectiva tras descuentos, que no viene en los datos).<br>
   • <b>Register</b>: ${META.optReg?'se cuenta SOLO postpago con Register':'se cuentan todos los postpago ≥29.9 (filtro Register desactivado — el archivo Register cubre solo parte de las líneas)'}. Archivo Register: ${fmt(META.regCount||0)} líneas con register.<br>
@@ -676,7 +679,7 @@ $('#exportBtn').onclick=()=>{
   ws['!freeze']={xSplit:0,ySplit:2};
   XLSX.utils.book_append_sheet(wb,ws,'Resumen Dealers');
   // Supuestos
-  const sup=[['SUPUESTOS Y NOTAS — Política Dealer julio 2026'],[''],
+  const sup=[['SUPUESTOS Y NOTAS — Política Dealer (vigente desde julio 2026) · Datos: '+periodLabel()],[''],
     ['Ponderación','29.9≤t<39.9 = 0.5 | 39.9≤t<49.9 = 0.9/1.2 | t≥49.9 = 0.9/1.5 | domingo=1.5 | feriado=2.0'],
     ['Cash-in ≥S/5','has_cash_in=1 ó amount_add≥5'],
     ['Consumo válido','amount_deduct_services>0'],
